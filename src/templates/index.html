@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% if title %}
+        <title>{{title}}</title>
+        {% else %}
+        <title>Rating Viewer</title>
+        {% endif %}
+    </head>
+    <body>
+        <h1>Greetings, {{ user.displayname }}</h1>
+    </body>
+</html>
