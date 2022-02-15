@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        {% if title %}
-        <title>{{title}}</title>
-        {% else %}
-        <title>Rating Viewer</title>
-        {% endif %}
-    </head>
-    <body>
-        <h1>Greetings, {{ user.displayname }}</h1>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    {% for ratingrow in ratinglist %}
+    <div class = "RatingRow">
+        <p>
+            <b>{{ ratingrow.user.displayname }}</b> has a rating of: <b> {{ ratingrow.rating }} </b>
+        </p>
+    </div>
+    {% endfor %}
+{% endblock content %}
