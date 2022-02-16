@@ -4,13 +4,25 @@
         {% if title %}
         <title>{{title}}</title>
         {% else %}
-        <title>Rating Viewer</title>
+        <title>Flask Mini-Blog</title>
         {% endif %}
     </head>
     <body>
         <div class="Navigation">
-            <a href = "/index">Rating Viewer</a>
+            <a href = "{{ url_for('index') }}"><h1>Flask Mini-Blog</h1></a>
+            <a href = "{{ url_for('login') }}">Login</a>
         </div>
+        <hr>
+
+        {% with all_flashed_messages = get_flashed_messages() %}
+        {% if all_flashed_messages %}
+            <ul>
+                {% for msg in all_flashed_messages %}
+                    <li>{{ msg }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
         <hr>
 
         {% block content %}
