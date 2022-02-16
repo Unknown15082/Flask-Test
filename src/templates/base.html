@@ -9,8 +9,8 @@
     </head>
     <body>
         <div class="Navigation">
-            <a href = "/index"><h1>Flask Mini-Blog</h1></a>
-            <a href = "/login">Login</a>
+            <a href = "{{ url_for('index') }}"><h1>Flask Mini-Blog</h1></a>
+            <a href = "{{ url_for('login') }}">Login</a>
         </div>
         <hr>
 
