@@ -12,6 +12,10 @@ blogs = [
     {
         'author_id': 2,
         'content': 'Extra random stuff'
+    },
+    {
+        'author_id': 1,
+        'content': 'Just testing debug mode'
     }
 ]
 
