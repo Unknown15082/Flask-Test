@@ -1,6 +1,10 @@
 from src import db
+from src import login
 
-class User(db.Model):
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
+
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(64), index=True, unique=True)
     displayname = db.Column(db.String(64))
@@ -11,6 +15,16 @@ class User(db.Model):
     
     def __repr__(self):
         return f'User {self.displayname}'
+
+    def set_password(self, password):
+        self.pwd = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.pwd, password)
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
