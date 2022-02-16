@@ -6,10 +6,16 @@
         {{ form.hidden_tag() }} <!-- To protect against CSRF attacks -->
 
         <p>
-            {{ form.username.label }} <br> {{ form.username(size = 32) }}
+            {{ form.username.label }} <br> {{ form.username(size = 32) }} <br>
+            {% for error_message in form.username.errors %}
+                <span style="color: red">Error: {{ error_message }} </span>
+            {% endfor %}
         </p>
         <p>
-            {{ form.password.label }} <br> {{ form.password(size = 32) }}
+            {{ form.password.label }} <br> {{ form.password(size = 32) }} <br>
+            {% for error_message in form.password.errors %}
+                <span style="color: red">Error: {{ error_message }} </span>
+            {% endfor %}
         </p>
         <p>
             {{ form.stay_login.label }} {{ form.stay_login }}
