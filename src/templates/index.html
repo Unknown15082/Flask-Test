@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% for ratingrow in ratinglist %}
-    <div class = "RatingRow">
+    {% for blog in blog_list %}
+    <div class = "Blog">
         <p>
-            <b>{{ ratingrow.user.displayname }}</b> has a rating of: <b> {{ ratingrow.rating }} </b>
+            <b>{{ blog.author_id }}</b> wrote: <b> {{ blog.content }} </b>
         </p>
     </div>
     {% endfor %}
