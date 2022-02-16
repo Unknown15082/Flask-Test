@@ -1,5 +1,4 @@
 from src import db
-from src.routes import index
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
