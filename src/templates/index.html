@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for ratingrow in ratinglist %}
+    <div class = "RatingRow">
+        <p>
+            <b>{{ ratingrow.user.displayname }}</b> has a rating of: <b> {{ ratingrow.rating }} </b>
+        </p>
+    </div>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% if title %}
+        <title>{{title}}</title>
+        {% else %}
+        <title>Rating Viewer</title>
+        {% endif %}
+    </head>
+    <body>
+        <div class="Navigation">
+            <a href = "/index">Rating Viewer</a>
+        </div>
+        <hr>
+
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>
