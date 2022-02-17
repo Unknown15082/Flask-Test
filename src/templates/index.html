@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% for blog in blog_list %}
-    <div class = "Blog">
-        <p>
-            <b>{{ blog.author_id }}</b> wrote: <b> {{ blog.content }} </b>
-        </p>
-    </div>
-    {% endfor %}
+    {% if blog_list %}
+        {% for blog in blog_list %}
+        <div class = "Blog">
+            <p>
+                <b>{{ blog.author_id }}</b> wrote: <b> {{ blog.content }} </b>
+            </p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class = "Blog">
+            <p>
+                There is no blog currently. 
+                <a href="{{ url_for('write') }}">Do you want to write something?</a>
+            </p>
+        </div>
+    {% endif %}
 {% endblock content %}

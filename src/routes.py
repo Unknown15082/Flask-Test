@@ -1,30 +1,15 @@
-from flask import render_template, flash, redirect, url_for
-from flask_login import current_user, login_user, logout_user
 from src import app
 from src.forms import LoginForm
 from src.models import User
 
-# Debugging purposes only
-user = {'username': 'Unknown1508', 'displayname': 'Unknown'}
-blogs = [
-    {
-        'author_id': 1,
-        'content': 'Some random content'
-    },
-    {
-        'author_id': 2,
-        'content': 'Extra random stuff'
-    },
-    {
-        'author_id': 1,
-        'content': 'Just testing debug mode'
-    }
-]
+from flask import render_template, flash, redirect, request, url_for
+from flask_login import current_user, login_user, logout_user, login_required
+from werkzeug.urls import url_parse
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', blog_list = blogs)
+    return render_template('index.html')
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -40,7 +25,10 @@ def login():
             return redirect(url_for('login'))
         else:
             login_user(user, remember = form.stay_login.data)
-            return redirect(url_for('index'))
+            next_page = request.args.get('next')
+            if (next_page is None) or (url_parse(next_page).netloc != ''):
+                return redirect(url_for('index'))
+            return redirect(next_page)
 
     return render_template('login.html', title = 'Login', form = form)
 
@@ -48,3 +36,8 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route('/write', methods = ['GET', 'POST'])
+@login_required
+def write():
+    return render_template('write.html', title = 'Write a blog')
